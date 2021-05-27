@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import '../node_modules/bootstrap/dist/js/bootstrap.js';
+import 'bootstrap';
+import {Route,Switch,Redirect} from "react-router-dom"
+import Error from './Error.js'
+import Properties from './Properties.js'
+import PropertyDetails from './PropertyDetails.js'
+import Scroll from './Scroll.js';
+import ScrollToTop from './ScrollToTop.js';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App=()=>{
+
+	return (
+		<>
+		
+		  <Scroll showBelow={250}/>
+		  <ScrollToTop>
+			<Switch>
+          <Route exact path="/">
+            <Redirect to="/properties1" />
+          </Route>
+					<Route exact path="/properties:page" component={Properties}/>
+					<Route  path="/property/:id" component={PropertyDetails}/>
+          <Route  component={Error} />
+					
+					
+			</Switch>
+			</ScrollToTop>
+				
+				
+		</>
+		)
 }
 
-export default App;
+export default App
